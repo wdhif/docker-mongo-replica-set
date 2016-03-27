@@ -24,7 +24,7 @@ services:
       - mongo_2
       - mongo_3
     environment:
-      DATABASE: replSetName
+      DATABASE: DatabaseName
       REPLICA_SET_ID: replSetName
       PRIMARY_MEMBER: mongo_1:27017
       SECONDARY_MEMBERS: mongo_2:27017,mongo_3:27017
