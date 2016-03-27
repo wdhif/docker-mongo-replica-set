@@ -1,11 +1,34 @@
 # docker-mongo-replicaset
-Docker compose for MongoDB Replica Set
+Docker image for MongoDB Replica Set
 
 ## Getting started
 
-1. Modify the docker-compose.yml as you want.
-2. Run `docker-compose up`
-3. You can check the status of your container with `docker exec -it CONTAINER_NAME bash` and then `mongo`
+You can use a `docker-compose.yml` like this
+
+```
+version: '2'
+services:
+  mongo_1:
+    image: mongo
+    command: --smallfiles --replSet replSetName --quiet
+  mongo_2:
+    image: mongo
+    command: --smallfiles --replSet replSetName --quiet
+  mongo_3:
+    image: mongo
+    command: --smallfiles --replSet replSetName --quiet
+  mongo_setup:
+    image: wdhif/mongo-replicaset-setup
+    links:
+      - mongo_1
+      - mongo_2
+      - mongo_3
+    environment:
+      DATABASE: replSetName
+      REPLICA_SET_ID: replSetName
+      PRIMARY_MEMBER: mongo_1:27017
+      SECONDARY_MEMBERS: mongo_2:27017,mongo_3:27017
+```
 
 ## Setup image
 
