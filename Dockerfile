@@ -1,5 +1,5 @@
 FROM ubuntu
-MAINTAINER Wassim DHIF <wassimdhif@gmail.com>
+LABEL maintainer "Wassim DHIF <wassimdhif@gmail.com>"
 
 RUN \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
